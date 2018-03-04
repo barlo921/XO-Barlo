@@ -16,14 +16,17 @@ public class Field {
     public Field(final int fieldSize) {
         this.fieldSize = fieldSize;
         field = new Figure[fieldSize][fieldSize];
-        MAX_COORDINATE = fieldSize;
+        MAX_COORDINATE = fieldSize - 1;
     }
 
     public int getFieldSize() {
         return fieldSize;
     }
 
-    public Figure getFigure(final Point point) {
+    public Figure getFigure(final Point point) throws InvalidCoordinateException {
+        if (!checkPoint(point)) {
+            throw new InvalidCoordinateException();
+        }
         return field[point.getX()][point.getY()];
     }
 
@@ -39,6 +42,6 @@ public class Field {
     }
 
     private boolean checkCoordinate(final int coordinate) {
-        return coordinate >= MIN_COORDINATE && coordinate < MAX_COORDINATE;
+        return coordinate >= MIN_COORDINATE && coordinate <= MAX_COORDINATE;
     }
 }
