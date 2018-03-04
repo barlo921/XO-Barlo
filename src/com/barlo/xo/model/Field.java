@@ -1,7 +1,7 @@
 package com.barlo.xo.model;
 
 
-import com.barlo.xo.model.exceptions.InvalidCordinateException;
+import com.barlo.xo.model.exceptions.InvalidCoordinateException;
 
 public class Field {
 
@@ -19,13 +19,17 @@ public class Field {
         MAX_COORDINATE = fieldSize;
     }
 
+    public int getFieldSize() {
+        return fieldSize;
+    }
+
     public Figure getFigure(final Point point) {
         return field[point.getX()][point.getY()];
     }
 
-    public void setFigure(final Point point, final Figure figure) throws InvalidCordinateException{
-        if(checkPoint(point)) {
-            throw new InvalidCordinateException();
+    public void setFigure(final Point point, final Figure figure) throws InvalidCoordinateException {
+        if(!checkPoint(point)) {
+            throw new InvalidCoordinateException();
         }
         field[point.getX()][point.getY()] = figure;
     }
@@ -35,6 +39,6 @@ public class Field {
     }
 
     private boolean checkCoordinate(final int coordinate) {
-        return coordinate > MIN_COORDINATE && coordinate < MAX_COORDINATE;
+        return coordinate >= MIN_COORDINATE && coordinate < MAX_COORDINATE;
     }
 }
