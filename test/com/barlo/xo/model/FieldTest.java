@@ -34,7 +34,7 @@ public class FieldTest {
     }
 
     @Test
-    public void testFetFigureWhenFigureIsNotSet() throws Exception {
+    public void testGetFigureWhenFigureIsNotSet() throws Exception {
 
         final int actualFieldSize = 3;
 
