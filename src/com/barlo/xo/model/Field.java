@@ -5,13 +5,18 @@ import com.barlo.xo.model.exceptions.InvalidCordinateException;
 
 public class Field {
 
-    final Figure field[][];
+    private final Figure field[][];
 
-    final int fieldSize;
+    private final int fieldSize;
+
+    private final int MIN_COORDINATE = 0;
+
+    private final int MAX_COORDINATE;
 
     public Field(final int fieldSize) {
         this.fieldSize = fieldSize;
         field = new Figure[fieldSize][fieldSize];
+        MAX_COORDINATE = fieldSize;
     }
 
     public Figure getFigure(final Point point) {
@@ -19,20 +24,17 @@ public class Field {
     }
 
     public void setFigure(final Point point, final Figure figure) throws InvalidCordinateException{
-        checkPoint(point);
+        if(checkPoint(point)) {
+            throw new InvalidCordinateException();
+        }
         field[point.getX()][point.getY()] = figure;
     }
 
-    public void checkPoint(final Point point) throws InvalidCordinateException{
-        if(checkCoordinate(point.getX()) | checkCoordinate(point.getY())) {
-            throw new InvalidCordinateException();
-        }
+    private boolean checkPoint(final Point point) {
+        return checkCoordinate(point.getX()) && checkCoordinate(point.getY());
     }
 
     private boolean checkCoordinate(final int coordinate) {
-        if(coordinate < 0 && coordinate >= fieldSize) {
-            return false;
-        }
-        return true;
+        return coordinate > MIN_COORDINATE && coordinate < MAX_COORDINATE;
     }
 }
