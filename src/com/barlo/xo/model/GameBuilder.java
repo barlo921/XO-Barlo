@@ -1,5 +1,7 @@
 package com.barlo.xo.model;
 
+import com.barlo.xo.model.exceptions.TwoPlayersSameFigureException;
+
 public class GameBuilder {
     private Player player1;
     private Player player2;
@@ -20,7 +22,7 @@ public class GameBuilder {
         return this;
     }
 
-    public Game createGame() {
+    public Game createGame() throws TwoPlayersSameFigureException {
         return new Game(player1, player2, fieldSize);
     }
 }
