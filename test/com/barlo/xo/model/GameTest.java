@@ -1,5 +1,6 @@
 package com.barlo.xo.model;
 
+import com.barlo.xo.model.exceptions.TwoPlayersSameFigureException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -34,5 +35,41 @@ public class GameTest {
 
     }
 
+    @Test
+    public void testPlayersSameFigureX() throws Exception {
+
+        try {
+
+            Game game = new GameBuilder().setPlayer1(new Player("Max", Figure.X))
+                    .setPlayer2(new Player("Slava", Figure.X))
+                    .setFieldSize(3)
+                    .createGame();
+
+            fail();
+
+        } catch (TwoPlayersSameFigureException e) {
+
+        }
+
+    }
+
+
+    @Test
+    public void testPlayersSameFigureO() throws Exception {
+
+        try {
+
+            Game game = new GameBuilder().setPlayer1(new Player("Max", Figure.O))
+                    .setPlayer2(new Player("Slava", Figure.O))
+                    .setFieldSize(3)
+                    .createGame();
+
+            fail();
+
+        } catch (TwoPlayersSameFigureException e) {
+
+        }
+
+    }
 
 }
