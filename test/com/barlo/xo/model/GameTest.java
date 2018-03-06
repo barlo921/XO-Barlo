@@ -12,9 +12,9 @@ public class GameTest {
 
         final String actualName = "Max";
 
-        Game game = new GameBuilder().setPlayer1(new Player(actualName, Figure.X))
-                                     .setPlayer2(new Player("Slava", Figure.O))
-                                     .setFieldSize(3)
+        Game game = new Game.GameBuilder().player1(new Player(actualName, Figure.X))
+                                     .player2(new Player("Slava", Figure.O))
+                                     .fieldSize(3)
                                      .createGame();
 
         assertEquals(actualName, game.getPlayer1().getName());
@@ -26,9 +26,9 @@ public class GameTest {
 
         final String actualName = "Slava";
 
-        Game game = new GameBuilder().setPlayer1(new Player("Max", Figure.X))
-                .setPlayer2(new Player(actualName, Figure.O))
-                .setFieldSize(3)
+        Game game = new Game.GameBuilder().player1(new Player("Max", Figure.X))
+                .player2(new Player(actualName, Figure.O))
+                .fieldSize(3)
                 .createGame();
 
         assertEquals(actualName, game.getPlayer2().getName());
@@ -40,9 +40,9 @@ public class GameTest {
 
         try {
 
-            Game game = new GameBuilder().setPlayer1(new Player("Max", Figure.X))
-                    .setPlayer2(new Player("Slava", Figure.X))
-                    .setFieldSize(3)
+            Game game = new Game.GameBuilder().player1(new Player("Max", Figure.X))
+                    .player2(new Player("Slava", Figure.X))
+                    .fieldSize(3)
                     .createGame();
 
             fail();
@@ -59,9 +59,9 @@ public class GameTest {
 
         try {
 
-            Game game = new GameBuilder().setPlayer1(new Player("Max", Figure.O))
-                    .setPlayer2(new Player("Slava", Figure.O))
-                    .setFieldSize(3)
+            Game game = new Game.GameBuilder().player1(new Player("Max", Figure.O))
+                    .player2(new Player("Slava", Figure.O))
+                    .fieldSize(3)
                     .createGame();
 
             fail();
