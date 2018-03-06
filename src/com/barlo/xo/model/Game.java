@@ -10,16 +10,17 @@ public class Game {
 
     private final Field field;
 
-    Game(Player player1, Player player2, final int fieldSize) throws TwoPlayersSameFigureException {
+    Game(final GameBuilder gameBuilder) throws TwoPlayersSameFigureException {
 
-        if (checkSameFigure(player1, player2, Figure.X) | checkSameFigure(player1, player2, Figure.O)) {
+        if (checkSameFigure(gameBuilder.getPlayer1(), gameBuilder.getPlayer2(), Figure.X) | checkSameFigure(gameBuilder.getPlayer1(), gameBuilder.getPlayer2(), Figure.O)) {
             throw new TwoPlayersSameFigureException();
         }
 
-        this.player1 = player1;
-        this.player2 = player2;
+        player1 = gameBuilder.getPlayer1();
+        player2 = gameBuilder.getPlayer2();
 
-        field = new Field(fieldSize);
+        field = new Field(gameBuilder.getFieldSize());
+
     }
 
     public Player getPlayer1() {
@@ -38,5 +39,42 @@ public class Game {
 
         return player1.getPlayersFigure() == figure && player2.getPlayersFigure() == figure;
 
+    }
+
+    public static class GameBuilder {
+        private Player player1;
+        private Player player2;
+        private int fieldSize;
+
+        public GameBuilder player1(Player player1) {
+            this.player1 = player1;
+            return this;
+        }
+
+        public GameBuilder player2(Player player2) {
+            this.player2 = player2;
+            return this;
+        }
+
+        public GameBuilder fieldSize(int fieldSize) {
+            this.fieldSize = fieldSize;
+            return this;
+        }
+
+        public Game createGame() throws TwoPlayersSameFigureException {
+            return new Game(this);
+        }
+
+        public Player getPlayer1() {
+            return player1;
+        }
+
+        public Player getPlayer2() {
+            return player2;
+        }
+
+        public int getFieldSize() {
+            return fieldSize;
+        }
     }
 }
