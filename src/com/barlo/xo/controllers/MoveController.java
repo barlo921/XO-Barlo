@@ -10,7 +10,7 @@ import com.barlo.xo.model.exceptions.InvalidCoordinateException;
 public class MoveController {
 
 
-    public void move(Field field, Point point, Figure figure) throws InvalidCoordinateException, AlreadyOccupiedException {
+    public void move(final Field field, final Point point, final Figure figure) throws InvalidCoordinateException, AlreadyOccupiedException {
 
         if (checkIfPointOccupied(field, point)) {
             throw new AlreadyOccupiedException();
@@ -20,7 +20,7 @@ public class MoveController {
 
     }
 
-    private boolean checkIfPointOccupied(Field field, Point point) throws InvalidCoordinateException {
+    private boolean checkIfPointOccupied(final Field field, final Point point) throws InvalidCoordinateException {
 
         if(field.getFigure(point) != null) return true;
 
