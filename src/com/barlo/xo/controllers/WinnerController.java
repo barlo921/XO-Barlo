@@ -16,11 +16,13 @@ public class WinnerController {
 
     public Figure checkWinner() throws InvalidCoordinateException {
 
+
         for (int i=0; i<field.getFieldSize(); i++) {
             if (checkLine(new Point(i,0), 0, 1)) {
                 return field.getFigure(new Point(i,0));
             }
         }
+
 
         for (int i=0; i<field.getFieldSize(); i++) {
             if (checkLine(new Point(0,i), 1, 0)) {
@@ -28,9 +30,11 @@ public class WinnerController {
             }
         }
 
+
         if (checkLine(new Point(0,0), 1, 1)) {
             return field.getFigure(new Point(0,0));
         }
+
 
         if (checkLine(new Point(0,2), 1, -1)) {
             return field.getFigure(new Point(0,2));
@@ -45,15 +49,17 @@ public class WinnerController {
 
         try {
 
-            if (field.getFigure(currentPoint) == field.getFigure(nextPoint)) {
+            if (field.getFigure(currentPoint) == field.getFigure(nextPoint) && field.getFigure(currentPoint) != null) {
                 checkLine(nextPoint, xRule, yRule);
+            } else {
+                return false;
             }
-
-            return false;
 
         } catch (InvalidCoordinateException e) {
             return true;
         }
+
+        return true;
 
     }
 
