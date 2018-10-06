@@ -79,11 +79,11 @@ public class ConsoleView {
     }
 
     private Point askPoint() {
-        return new Point(askCoordinate("X")-1, askCoordinate("Y")-1);
+        return new Point(askCoordinate("Line")-1, askCoordinate("Column")-1);
     }
 
     private int askCoordinate(final String coordinateName) {
-        System.out.format("Please enter coordinate %s\n", coordinateName);
+        System.out.format("Please enter coordinate for %s\n", coordinateName);
         final Scanner scanner = new Scanner(System.in);
         try {
             return scanner.nextInt();
