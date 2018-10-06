@@ -15,15 +15,30 @@ public class WinnerControllerTest {
     @Test
     public void figureXFirstLineWinner() throws InvalidCoordinateException {
 
+    Figure winner = Figure.X;
+
+    Field field = new Field(3);
+
+        for (int i=0; i<field.getFieldSize(); i++) {
+        field.setFigure(new Point(0,i), Figure.X);
+    }
+
+    assertEquals(winner, new WinnerController().getWinner(field));
+
+}
+
+    @Test
+    public void figureXFirstLineTwoFigures() throws InvalidCoordinateException {
+
         Figure winner = Figure.X;
 
         Field field = new Field(3);
 
-        for (int i=0; i<field.getFieldSize(); i++) {
+        for (int i=0; i<field.getFieldSize()-1; i++) {
             field.setFigure(new Point(0,i), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController().getWinner(field));
+        assertNull(new WinnerController().getWinner(field));
 
     }
 
