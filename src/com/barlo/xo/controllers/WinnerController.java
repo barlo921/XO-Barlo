@@ -42,23 +42,19 @@ public class WinnerController {
         return null;
     }
 
-    private boolean checkLine(final Point currentPoint, final int xRule, final int yRule) {
+    private boolean checkLine(final Point currentPoint, final int xRule, final int yRule) throws InvalidCoordinateException {
 
         Point nextPoint = pointGenerator(currentPoint, xRule, yRule);
 
-        try {
-
-            if (field.getFigure(currentPoint) == field.getFigure(nextPoint) && field.getFigure(currentPoint) != null) {
-                checkLine(nextPoint, xRule, yRule);
-            } else {
-                return false;
-            }
-
-        } catch (InvalidCoordinateException e) {
-            return true;
+        if (field.getFigure(currentPoint) == null) {
+            return false;
         }
 
-        return true;
+        if (field.getFigure(currentPoint) == field.getFigure(nextPoint) && field.getFigure(currentPoint) == field.getFigure(pointGenerator(nextPoint, xRule, yRule))) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 

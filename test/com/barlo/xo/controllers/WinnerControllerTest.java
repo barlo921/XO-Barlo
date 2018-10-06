@@ -1,10 +1,10 @@
 package com.barlo.xo.controllers;
 
 
-import com.barlo.xo.model.Field;
-import com.barlo.xo.model.Figure;
-import com.barlo.xo.model.Point;
+import com.barlo.xo.model.*;
 import com.barlo.xo.model.exceptions.InvalidCoordinateException;
+import com.barlo.xo.model.exceptions.TwoPlayersSameFigureException;
+import com.barlo.xo.view.ConsoleView;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -44,15 +44,23 @@ public class WinnerControllerTest {
 
 
     @Test
-    public void figureXSecondLineWinner() throws InvalidCoordinateException {
+    public void figureXSecondLineWinner() throws InvalidCoordinateException, TwoPlayersSameFigureException {
 
         Figure winner = Figure.X;
 
-        Field field = new Field(3);
+        Game gameXO = new Game.GameBuilder()
+                .player1(new Player("Player 1", Figure.X))
+                .player2(new Player("Player 2", Figure.O))
+                .fieldSize(3)
+                .createGame();
+
+        ConsoleView consoleView = new ConsoleView(gameXO);
+        Field field = gameXO.getField();
 
         for (int i=0; i<field.getFieldSize(); i++) {
             field.setFigure(new Point(1,i), Figure.X);
         }
+
 
         assertEquals(winner, new WinnerController().getWinner(field));
 
