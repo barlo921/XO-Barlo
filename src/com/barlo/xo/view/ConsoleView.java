@@ -2,9 +2,18 @@ package com.barlo.xo.view;
 
 //Prints field in console
 
+import com.barlo.xo.controllers.CurrentMoveController;
+import com.barlo.xo.controllers.MoveController;
+import com.barlo.xo.controllers.WinnerController;
 import com.barlo.xo.model.Field;
+import com.barlo.xo.model.Figure;
+import com.barlo.xo.model.Game;
 import com.barlo.xo.model.Point;
+import com.barlo.xo.model.exceptions.AlreadyOccupiedException;
 import com.barlo.xo.model.exceptions.InvalidCoordinateException;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ConsoleView {
 
@@ -12,11 +21,13 @@ public class ConsoleView {
     private final static String BRAKE_LINES = "-------";
     private final static String NULL_FIGURE = " ";
 
+    final Game gameXO;
     final Field field;
 
 
-    public ConsoleView(Field field) {
-        this.field = field;
+    public ConsoleView(Game gameXO) {
+        this.gameXO = gameXO;
+        field = gameXO.getField();
     }
 
     public void printField() throws InvalidCoordinateException {
@@ -29,6 +40,62 @@ public class ConsoleView {
             printBrakes(BRAKE_LINES);
         }
 
+    }
+
+    public boolean move() {
+
+        CurrentMoveController currentMoveController = new CurrentMoveController();
+        MoveController moveController = new MoveController();
+        WinnerController winnerController = new WinnerController();
+        Figure currentFigure;
+        Figure winner;
+
+        try {
+
+            winner = winnerController.getWinner(field);
+            if (winner != null) {
+                System.out.format("Winner is %s\n", winner);
+                return false;
+            }
+
+            currentFigure = currentMoveController.currentMove(field);
+
+            if (currentFigure == null) {
+                System.out.println("Draw!");
+                return false;
+            }
+
+            System.out.format("Turn for %s\n", currentFigure);
+
+            moveController.applyFigure(field, askPoint(), currentFigure);
+
+            return true;
+
+        } catch (final InvalidCoordinateException | AlreadyOccupiedException e) {
+            System.out.println("Point is Invalid!");
+        }
+
+        return true;
+    }
+
+    private Point askPoint() {
+        return new Point(askCoordinate("X")-1, askCoordinate("Y")-1);
+    }
+
+    private int askCoordinate(final String coordinateName) {
+        System.out.format("Please enter coordinate %s\n", coordinateName);
+        final Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Olololo!!!");
+            return askCoordinate(coordinateName);
+        }
+    }
+
+    private void invalidCoordinate(final int coordinate) throws InvalidCoordinateException {
+        if (coordinate<0 && coordinate>gameXO.getField().getFieldSize())
+            throw new InvalidCoordinateException();
     }
 
     private void printLine(final int line) throws InvalidCoordinateException {
