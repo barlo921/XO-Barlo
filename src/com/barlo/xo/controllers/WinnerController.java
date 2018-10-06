@@ -1,5 +1,6 @@
 package com.barlo.xo.controllers;
 
+//Logic to determine the winner
 
 import com.barlo.xo.model.Field;
 import com.barlo.xo.model.Figure;
@@ -10,11 +11,9 @@ public class WinnerController {
 
     private Field field;
 
-    public WinnerController(final Field field) {
-        this.field = field;
-    }
+    public Figure getWinner(final Field field) throws InvalidCoordinateException {
 
-    public Figure checkWinner() throws InvalidCoordinateException {
+        this.field = field;
 
 
         for (int i=0; i<field.getFieldSize(); i++) {

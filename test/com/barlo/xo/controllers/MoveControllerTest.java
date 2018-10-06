@@ -22,7 +22,7 @@ public class MoveControllerTest {
         Point sameCoordinatePoint = new Point(0,0);
 
         try {
-            mv.move(field, sameCoordinatePoint, Figure.X);
+            mv.applyFigure(field, sameCoordinatePoint, Figure.X);
             fail();
         } catch (AlreadyOccupiedException e) {
 
@@ -39,7 +39,7 @@ public class MoveControllerTest {
         Point sameCoordinatePoint = new Point(0,0);
 
         try {
-            mv.move(field, sameCoordinatePoint, Figure.O);
+            mv.applyFigure(field, sameCoordinatePoint, Figure.O);
             fail();
         } catch (AlreadyOccupiedException e) {
 
@@ -56,7 +56,7 @@ public class MoveControllerTest {
         Point sameCoordinatePoint = new Point(5,5);
 
         try {
-            mv.move(field, sameCoordinatePoint, Figure.O);
+            mv.applyFigure(field, sameCoordinatePoint, Figure.O);
             fail();
         } catch (InvalidCoordinateException e) {
 

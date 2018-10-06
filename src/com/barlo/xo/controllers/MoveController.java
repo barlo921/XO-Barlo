@@ -1,5 +1,6 @@
 package com.barlo.xo.controllers;
 
+//Logic for setting Figure at Field during Player's turn
 
 import com.barlo.xo.model.Field;
 import com.barlo.xo.model.Figure;
@@ -10,7 +11,7 @@ import com.barlo.xo.model.exceptions.InvalidCoordinateException;
 public class MoveController {
 
 
-    public void move(final Field field, final Point point, final Figure figure) throws InvalidCoordinateException, AlreadyOccupiedException {
+    public void applyFigure(final Field field, final Point point, final Figure figure) throws InvalidCoordinateException, AlreadyOccupiedException {
 
         if (checkIfPointOccupied(field, point)) {
             throw new AlreadyOccupiedException();

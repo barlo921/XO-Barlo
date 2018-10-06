@@ -4,7 +4,6 @@ package com.barlo.xo.controllers;
 import com.barlo.xo.model.Field;
 import com.barlo.xo.model.Figure;
 import com.barlo.xo.model.Point;
-import com.barlo.xo.model.exceptions.AlreadyOccupiedException;
 import com.barlo.xo.model.exceptions.InvalidCoordinateException;
 import org.junit.Test;
 
@@ -24,7 +23,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(0,i), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -40,7 +39,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(1,i), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -55,7 +54,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(2,i), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -71,7 +70,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(0,i), Figure.O);
         }
 
-        assertNotEquals(winner, new WinnerController(field).checkWinner());
+        assertNotEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -86,7 +85,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(i,0), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -101,7 +100,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(i,1), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -117,7 +116,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(i,2), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -133,7 +132,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(i,i), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -149,7 +148,7 @@ public class WinnerControllerTest {
             field.setFigure(new Point(2-i,i), Figure.X);
         }
 
-        assertEquals(winner, new WinnerController(field).checkWinner());
+        assertEquals(winner, new WinnerController().getWinner(field));
 
     }
 
@@ -158,7 +157,7 @@ public class WinnerControllerTest {
 
         Field field = new Field(3);
 
-        assertNull(new WinnerController(field).checkWinner());
+        assertNull(new WinnerController().getWinner(field));
 
     }
 
