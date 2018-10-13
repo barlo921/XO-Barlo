@@ -22,6 +22,10 @@ public class XOGame {
 
 /*    Start for Console XO Game
 
+       System.out.println("XO Game Begins");
+
+       consoleView.printField();
+
        while (consoleView.move()) {
             consoleView.printField();
         }
