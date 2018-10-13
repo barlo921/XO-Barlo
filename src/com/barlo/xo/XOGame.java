@@ -1,12 +1,14 @@
 package com.barlo.xo;
 
 
+import com.barlo.xo.view.WindowView;
 import com.barlo.xo.model.Figure;
 import com.barlo.xo.model.Game;
 import com.barlo.xo.model.Player;
 import com.barlo.xo.model.exceptions.InvalidCoordinateException;
 import com.barlo.xo.model.exceptions.TwoPlayersSameFigureException;
-import com.barlo.xo.view.ConsoleView;
+import com.barlo.xo.model.Window;
+import javafx.application.Application;
 
 public class XOGame {
 
@@ -18,14 +20,14 @@ public class XOGame {
                                 .fieldSize(3)
                                 .createGame();
 
-        ConsoleView consoleView = new ConsoleView(gameXO);
+/*    Start for Console XO Game
 
-        System.out.println("XO Game Begins!");
-        consoleView.printField();
-
-        while (consoleView.move()) {
+       while (consoleView.move()) {
             consoleView.printField();
         }
+*/
+        WindowView.setField(gameXO.getField());
+        Application.launch(Window.class, args);
 
     }
 
