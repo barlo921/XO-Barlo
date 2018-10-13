@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="210.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.barlo.xo.view.WindowView">
+   <children>
+      <Button mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutX="70.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutX="140.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutX="140.0" layoutY="70.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutX="70.0" layoutY="70.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutY="70.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutY="140.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutX="70.0" layoutY="140.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Button layoutX="140.0" layoutY="140.0" mnemonicParsing="false" onAction="#setFigure" prefHeight="70.0" prefWidth="70.0" />
+      <Text fx:id="textField" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="XO GAME BEGINS" textAlignment="CENTER" wrappingWidth="210.0">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
